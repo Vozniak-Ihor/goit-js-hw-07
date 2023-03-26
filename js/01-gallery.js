@@ -1,7 +1,6 @@
 import { galleryItems } from "./gallery-items.js";
+// console.log(galleryItems);
 // Change code below this line
-
-console.log(galleryItems);
 
 function createFotoCads(galleryItems) {
   return galleryItems
@@ -17,11 +16,31 @@ function createFotoCads(galleryItems) {
       </a>
     </li> `;
     })
-    .join('');
+    .join("");
 }
 
 const galleryEl = document.querySelector(".gallery");
 const galleryMarkup = createFotoCads(galleryItems);
-galleryEl.insertAdjacentHTML("beforebegin", galleryMarkup);
+galleryEl.insertAdjacentHTML("beforeend", galleryMarkup);
 
+galleryEl.addEventListener("click", ff);
 
+function ff(evt) {
+  evt.preventDefault();
+  
+  if (!evt.target.classList.contains("gallery__image")) {
+    return;
+  }
+  // console.log(evt.target);
+  
+  const openModal = basicLightbox.create(`
+  <img src="${evt.target.dataset.source}" width="800" height="600">
+  `);
+  openModal.show();
+  
+  galleryEl.addEventListener('keydown', (evt) => {
+    if(evt.code === 'Escape'){
+openModal.close()
+    }
+  })
+}
