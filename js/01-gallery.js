@@ -23,9 +23,9 @@ const galleryEl = document.querySelector(".gallery");
 const galleryMarkup = createFotoCads(galleryItems);
 galleryEl.insertAdjacentHTML("beforeend", galleryMarkup);
 
-galleryEl.addEventListener("click", ff);
+galleryEl.addEventListener("click", clickOpenOriginalImg);
 
-function ff(evt) {
+function clickOpenOriginalImg(evt) {
   evt.preventDefault();
   
   if (!evt.target.classList.contains("gallery__image")) {
